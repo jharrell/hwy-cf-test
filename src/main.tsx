@@ -11,8 +11,8 @@ import {
 import { Hono } from "hono";
 import { logger } from "hono/logger";
 import { secureHeaders } from "hono/secure-headers";
-import { serve } from "@hono/node-server";
-import { serveStatic } from "@hono/node-server/serve-static";
+import { serveStatic } from 'hono/cloudflare-workers'
+// import { serveStatic } from "@hono/node-server/serve-static";
 
 const IS_DEV = process.env.NODE_ENV === "development";
 
@@ -108,8 +108,9 @@ app.onError((error, c) => {
 
 const PORT = process.env.PORT ? Number(process.env.PORT) : 8080;
 
-serve({ fetch: app.fetch, port: PORT }, (info) => {
-  console.log(
-    `\nListening on http://${IS_DEV ? "localhost" : info.address}:${PORT}\n`
-  );
-});
+export default {
+  fetch: app.fetch,
+  port: PORT,
+}
+
+console.log(`\nListening on port ${PORT}\n`)

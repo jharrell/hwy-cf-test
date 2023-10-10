@@ -4,3 +4,6 @@ node_compat = true
 
 [build]
 command = "npm run build"
+
+[site]
+bucket = './public'
