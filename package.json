@@ -1,0 +1,31 @@
+{
+  "name": "hwy-cf-test-2",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "hwy-prebuild": "tailwindcss -i src/styles/tw-input.css -o src/styles/tw-output.bundle.css",
+    "build": "tsc --noEmit && hwy-build",
+    "esbuild": "esbuild --bundle --outdir=dist --format=esm --platform=node --loader:.node=file ./src/*.ts ./src/*.tsx ./src/**/*.tsx",
+    "start": "node dist/main.js",
+    "dev": "hwy-dev-serve"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.2.0",
+    "hono": "^3.7.5",
+    "hwy": "^0.3.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231002.0",
+    "@hwy-js/dev": "^0.3.0",
+    "@types/node": "^20.8.3",
+    "cross-env": "^7.0.3",
+    "esbuild": "^0.19.4",
+    "htmx.org": "^1.9.6",
+    "tailwindcss": "^3.3.3",
+    "typescript": "^5.2.2",
+    "wrangler": "^3.11.0"
+  },
+  "engines": {
+    "node": ">=18.14.1"
+  }
+}
